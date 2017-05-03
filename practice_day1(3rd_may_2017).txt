@@ -1,0 +1,170 @@
+let evens=[0,1,2,3,4,5,6];
+var odds = evens.map(v => v + 1);
+console.log(odds)
+ANS:Array [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+]
+let evens=[0,1,2,3,4,5,6];
+var odds = evens.map(v => v + 1);
+var nums = evens.map((v, i) => v + i);
+var pairs = evens.map(v => ({even: v, odd: v + 1}));
+console.log(odds);
+//console.log(nums);
+//console.log(pairs);
+
+let fives=[];
+evens.forEach(v => {
+  if (v % 5 === 0)
+    fives.push(v);
+});
+//alert(fives); 5 ,10
+
+
+var bob = {
+  _name: "Bob",
+  _friends: [1,5,6,8],
+  printFriends() {
+    this._friends.forEach(f =>
+     console.log(this._name + " knows " + f));== bob knows 1
+						bob knows 5....
+  }
+}
+let t=bob.printFriends();
+//console.log(t);== undefined
+
+
+var adder = {
+  base: 41,
+  base:425,
+    
+  add: function(a) {
+    var f = v => v + this.base;
+    return f(a);
+  },
+
+  addThruCall: function(a) {
+    var f = v => v + this.base;
+    var b = {
+      base: 2
+    };
+            
+    return f.call(b, a);
+  }
+};
+
+console.log(adder.add(1));         // This would log to 2
+console.log(adder.addThruCall(1));
+
+var sample= a=>a>15 ? 15:a;
+console.log(sample(55));==15
+console.log(sample(14));==14
+============================================================================================================================================
+
+class user{
+  constructor(username,email,password){
+    this.username=username;
+    this.email=email;
+    this.password=password;
+  }
+static r(){
+	console.log("i am static");
+}
+  reg(){
+    console.log(this.username+'is now registerd');==== sandeep is now registered
+    
+  }
+}
+let bob=new user('sandeep','sandeep@gmail.com','king');
+bob.reg();
+console.log("sandeep");
+user.r();
+=========================================================================================================================================
+Inheritance:
+class user{
+  constructor(username,email,password){
+    this.username=username;
+    this.email=email;
+    this.password=password;
+  }
+  reg(){
+    console.log(this.username+'is now registerd');
+    
+  }
+}
+// let bob=new user('sandeep','sandeep@gmail.com','king');
+// bob.reg();
+// console.log("sandeep");
+class member extends user{
+  constructor(username,email,password,mpackage){
+    super(username,email,password);
+    this.mpackage=mpackage;
+  }
+  getpackage(){
+    console.log(this.username+' is now at  '+this.mpackage);== sunny is at India;
+  }
+}
+
+let us=new member('sunny','sunny@gmail.com','1234','India');
+us.getpackage();
+===========================================================================================================================================
+Template Literals:
+let name ='sandeep';
+function k(word){
+  return word.toUpper();
+}
+
+let temp=`<h1>Sandeep</h1>
+<p>${name}is a ${k('sample')},text</p>`
+=========================================================================================================================================
+Sets:
+let myArray = [11,22,34,65,34];
+let mySet = new Set(myArray);
+mySet.add('100');
+mySet.add({a: 1, b: 2});
+mySet.delete(22);
+mySet.add('100');
+mySet.add('200');
+//console.log(mySet.size);
+mySet.forEach(function(val){
+  console.log(val);== 11,34,65,34,'100',object{'a':1,'b':2},'200'
+});
+=========================================================================================================================================
+map:
+let myMap = new Map([['a1','Hello'], ['b2', 'Goodbye']]);
+myMap.set('c3', 'Foo');
+myMap.delete('a1');
+console.log(myMap.size);==== 2
+===========================================================================================================================================
+WeekSet:
+
+let carWeakSet = new WeakSet();
+let car1 = {
+  make: 'Honda',
+  model: 'Civic'
+}
+carWeakSet.add(car1);
+let car2 = {
+  make: 'Toyota',
+  model: 'Camry'
+}
+carWeakSet.add(car2);
+carWeakSet.delete(car1);
+console.log(carWeakSet);=== weakset{toyata: camry};
+===========================================================================================================================================
+ destructuring in parameter handling:
+
+const items = [
+    { word:'foo', count:3 },
+    { word:'bar', count:9 },
+];
+items.forEach(({word, count}) => {
+    console.log(word+' '+count);===="foo 3"  "bar 9"
+});
+
+
