@@ -54,6 +54,37 @@ Answer: It Prints 3 object Arrays:   |
 2.{0:'Sandeep',1:Naidu}              |
 3.{make:'sandeep',brand:'mycar'};    |
 --------------------------------------------------------------------------------------------------
+Example on GenricCollection with filter:
+----------------------------------------
+    	class GenericCollection<T extends car>{
+       	        public collection: T[] = [];
+	        constructor(...item: T[]) {
+      		      item.forEach(Element => this.collection.push(Element));
+	        }
+	        getCollection() {
+	            return this.collection;
+            }
+            findBrand(brand) {
+                return this.collection.filter(Element => Element.brand === brand);
+            }
+	    }
+	    // let a: GenericCollection<number> = new GenericCollection<number>(1, 2, 3);
+	    // let b: GenericCollection<string> = new GenericCollection<string>("Sandeep", "Naidu");
+	    // console.log(b);
+	    // console.log(a);
+
+	    interface car{
+	        make: string;
+	        brand: string;
+	    }
+	    let carColl = new GenericCollection<car>({ make: 'sandeep', brand: 'mycar' });
+	    console.log(carColl.findBrand('mycar'));
+-----------------
+Answer: obj{    |
+make:sandeep    |
+brand:mycar     |
+}               |
+--------------------------------------------------------------------------------------------------
 Examples and Clarity on This
 Example:1
 -----------------------------
