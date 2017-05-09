@@ -1,0 +1,191 @@
+Example on Interface with choosing parameters
+----------------------------------------------
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+
+function createSquare(config: SquareConfig): { color: string; area: number } {
+    let newSquare = {color: "white", area: 100};
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
+}
+
+let mySquare = createSquare({ width: 50 });
+alert(mySquare.color+"<----------->"+mySquare.area);
+console.log(mySquare);
+--------------------------
+Answer: White<----->2500 |
+---------------------------------------------------------------------------------------------------
+Example on Gerenics:
+--------------------
+Exampels on Generic Collections
+		// export module Generic{
+
+    	class GenericCollection<T>{
+       	        public collection: T[] = [];
+	        constructor(...item: T[]) {
+      		      item.forEach(Element => this.collection.push(Element));
+	        }
+	        getCollection() {
+	            return this.collection;
+	        }
+	    }
+	    let a: GenericCollection<number> = new GenericCollection<number>(1, 2, 3);
+	    let b: GenericCollection<string> = new GenericCollection<string>("Sandeep", "Naidu");
+	    console.log(b);
+	    console.log(a);
+
+	    interface car{
+	        make: string;
+	        brand: string;
+	    }
+	    let carColl = new GenericCollection<car>({ make: 'sandeep', brand: 'mycar' });
+	    console.log(a, b, carColl);
+	// }
+--------------------------------------
+Answer: It Prints 3 object Arrays:   |
+1.{0:1,1:2,2:3}                      |
+2.{0:'Sandeep',1:Naidu}              |
+3.{make:'sandeep',brand:'mycar'};    |
+--------------------------------------------------------------------------------------------------
+Examples and Clarity on This
+Example:1
+-----------------------------
+function foo() {
+    console.log(this);
+}
+foo();----------------1
+
+let bar = {
+    bas:123
+}
+bar.foo = foo;
+bar.foo();--------------2
+---------------------------------------------------------------------
+Answer:                                                             |
+1.In the First Case foo() takes whole Window.. It Prints Window.    |
+2. It Prints Object as Object{                                      |
+bas:123                                                             |
+}                                                                   |
+---------------------------------------------------------------------------------------------------
+Example:2 on 'THIS'
+--------------------
+class FOO{
+    bar = 1232;
+    bas() {
+        console.log(this.bar);
+    }
+}
+let foo = new FOO();
+foo.bas();
+--------------
+Answer: 1232  |
+---------------------------------------------------------------------------------------------------
+Example:3 on 'THIS'
+---------------------
+class FOO{
+    bar = 123;
+    bas() {
+        setTimeout(function () {
+            console.log('this is ', this);
+            console.log(this.bar);
+        }, 100);
+    }
+}
+let foo = new FOO();
+foo.bas();
+--------------------
+Answer: Window     |This Can't be accessed in function in function
+Undefined          |--To Resolve that we use => opertion in below example...
+--------------------------------------------------------------------------------------------------
+Example:4 on 'This'
+----------------------
+class FOO{
+    bar = 123;
+    bas() {
+        setTimeout( ()=> {
+            console.log('this is ', this);
+            console.log(this.bar);
+        }, 100);
+    }
+}
+let foo = new FOO();
+foo.bas();
+----------------------------------
+Answer: This is FOO-->class      |
+123                              |
+--------------------------------------------------------------------------------------------------
+Example:5 Same as Above example with use defined function:
+--------------------------------------------------------------
+class FOO{
+    bar = 123;
+    bas() {
+        console.log(this);
+        console.log(this.bar);
+    }
+}
+let foo = new FOO();
+let bas = foo.bas;
+bas();
+---------------------
+Answer: Window      |if we call directly as foo.bas()-->we will get answer as we want
+undefined           |-->but while taking another varible when we call a function it shows
+                    |    undefined
+                    | ---> we resolve this also by => functions
+--------------------------------------------------------------------------------------------------
+Example: 6 Resloving above example with "=>" :
+----------------------------------------------
+class FOO{
+    bar = 123;
+    bas=()=> {
+        console.log(this);
+        console.log(this.bar);
+    }
+}
+let foo = new FOO();
+let bas = foo.bas;
+bas();
+-------------------------
+Answer: FOO--> function |
+123                     |
+-------------------------------------------------------------------------------------------------
+Example on Interface Readonly:
+--------------------------------
+interface SquareConfig {
+    color?: string;
+    width?: number;
+    readonly x?: number;
+}
+
+function createSquare(config: SquareConfig): { color: string; area: number;xy:number } {
+    let newSquare = {color: "white", area: 100,xy:50};
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    if (config.x) {
+        config.x = config.x + 1;
+        config.x = config.x - 1;
+        newSquare.xy = config.x * config.x;
+
+    }
+    return newSquare;
+}
+
+let mySquare = createSquare({ x: 25});
+alert(mySquare.color+"<----------->"+mySquare.area+"<---->"+mySquare.xy);
+console.log(mySquare);
+
+Answer:
+----------------------------
+White<----->100<------->625 |-> Readonly is only allowed in TypeScript while it converts to
+                             JavaScript
+-------------------------------------------------------------------------------------------------
