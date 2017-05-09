@@ -189,3 +189,74 @@ Answer:
 White<----->100<------->625 |-> Readonly is only allowed in TypeScript while it converts to
                              JavaScript
 -------------------------------------------------------------------------------------------------
+Example on Inheritance:
+--------------------------
+class Adder {
+    constructor(public a: number) {
+        alert(a+"--->a")
+    }
+    // This function is now safe to pass around
+    add = (b: number): number => {
+        alert(b+"==>adder -->b");
+        return this.a + b;
+    }
+}
+
+class ExtendedAdder extends Adder {
+    // Create a copy of parent before creating our own
+    private superAdd = this.add;
+   // alert(this.add(100))
+    // Now create our override
+    add = (b: number): number => {
+        alert(b+"--->ext adder ===>b");
+        return this.superAdd(b);
+    }
+}
+
+let k = new ExtendedAdder(20);
+let k2=k.add(20);
+console.log(k2);
+----------------
+Answer(20);    |
+------------------------------------------------------------------------------------------------
+Example on Inheritance with super Key word:
+----------------------------------------------
+class person
+{
+    constructor(public height, public weight, public color)
+    {
+
+    }
+    height_person =(ht: number=67)=>
+     {
+        alert("super_class  ->" + ht);
+        return ht;
+
+     }
+}
+
+class student extends person
+{
+
+    constructor(public name,public id,public height,public weight,public color)
+    {
+        super(height, weight, color)
+
+    }
+    private superADD = this.height_person;
+
+     height_person =(ht: number)=>
+     {
+         return this.superADD(ht);
+
+     }
+
+}
+var ab = new student('sandeep', 4, 7, 99, 'blue');
+var kt=ab.height_person(10);
+console.log(kt);
+--------------
+Answer: 10   | overwritting parent class method value from child class and that return back
+             |  --> by using => function.
+-------------------------------------------------------------------------------------------------
+
