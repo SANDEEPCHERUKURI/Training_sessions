@@ -101,8 +101,8 @@ class FOO{
 let foo = new FOO();
 foo.bas();
 --------------------
-Answer: Window     |This Can't be accessed in function in function
-Undefined          |--To Resolve that we use => opertion in below example...
+Answer: Window      |This Can't be accessed in function in function
+Undefined           |--To Resolve that we use => opertion in below example...
 --------------------------------------------------------------------------------------------------
 Example:4 on 'This'
 ----------------------
@@ -190,7 +190,7 @@ White<----->100<------->625 |-> Readonly is only allowed in TypeScript while it 
                              JavaScript
 -------------------------------------------------------------------------------------------------
 Example on Inheritance:
---------------------------
+-----------------------
 class Adder {
     constructor(public a: number) {
         alert(a+"--->a")
@@ -220,7 +220,7 @@ console.log(k2);
 Answer(20);    |
 ------------------------------------------------------------------------------------------------
 Example on Inheritance with super Key word:
-----------------------------------------------
+-------------------------------------------
 class person
 {
     constructor(public height, public weight, public color)
